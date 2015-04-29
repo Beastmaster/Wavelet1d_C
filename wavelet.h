@@ -4,6 +4,7 @@ By qinshuo
 
 Note: The length of the signal must less than 80 points
 	  Level of decompose is less than 6
+	  
 */
 
 
@@ -35,27 +36,29 @@ extern "C" {
 		double det[100];
 	} WaveCoeff;
 
-	//basic convolution function
-	void WConvolve(double* signal, int lenSignal, const double* filter, int lenFilter,double* result);
 	//down sample function
 	void DownSample(double* signal,int sig_length,double* result);
 	//up sample function
 	void UpSample(double* signal,int sig_length,double* result);
-
 	//create wavelet filters
 	void CreateDB4(double*,int*);
 
+	//extend array in the front and end
 	void WExtend(double* init_signal,int init_len,double* dest_signal,int ext_len,double* fore_ext,double* back_ext);
-
+	//basic convolution function
+	void WConvolve(double* signal, int lenSignal, const double* filter, int lenFilter,double* result,double* fore_ext,double* back_ext);
 	//discrete wavelet transform
-	void DWT(double* signal,int sig_len, const double* Lo_D,int low_len, const double* Hi_D,int hig_len ,WaveCoeff* coeff);
-	//discrete wavelet reverse transform
-	void IDWT(double* signal,int sig_len, const double* Lo_D,int low_len, const double* Hi_D,int hig_len ,WaveCoeff* coeff);
-
-
-
-	void WaveDecompose(double* signal,int sig_len, const double* filter,int filter_len,WaveCoeff* para_comtainer,int de_level);
+	void DWT(double* signal,int sig_len, const double* Lo_D,int low_len, const double* Hi_D,int hig_len ,WaveCoeff* coeff,		 double* fore_ext,double* back_ext);
+	//multi level wavelet transform
+	void WaveDecompose(double* signal,int sig_len, const double* Lo_D,int low_len, const double* Hi_D,int hig_len,WaveCoeff* para_comtainer,int de_level);
 	
+	//discrete wavelet inverse transform for one level
+	void IDWT(double* signal,int sig_len, const double* Lo_D,int low_len, const double* Hi_D,int hig_len ,WaveCoeff* coeff,double* result);
+	//re-construct the wave for a specified level
+	void WaveReconstruct(double* signal,int sig_len, const double* Lo_R,int low_len, const double* Hi_R,int hig_len ,WaveCoeff* coeff,int level);
+
+
+
 #ifdef __cplusplus
 }
 #endif

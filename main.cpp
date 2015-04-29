@@ -14,9 +14,10 @@ int main(char**, int)
 	int i=0;
 	FILE* fp;
 
-	WaveCoeff coeff;
+	int de_level=0;
+	WaveCoeff coeff[10] = {0};
 
-	DWT(signal_init,signal_len,db4_Lo_D,db4_len,db4_Hi_D,db4_len,&coeff);
+	DWT(signal_init,signal_len,db4_Lo_D,db4_len,db4_Hi_D,db4_len,&coeff[0],NULL,NULL);
 
 	//print for test
 	if ((fp = fopen("result", "w")) == NULL) {
@@ -25,16 +26,19 @@ int main(char**, int)
 	}
 	for (i=0;i<100;i++)
 	{
-		fprintf(fp,"%6f",coeff.app[i]);
+		fprintf(fp,"%6f",coeff[0].app[i]);
 		fprintf(fp,",");
 	}
 	fprintf(fp,"\n");
 	for (i=0;i<100;i++)
 	{
-		fprintf(fp,"%6f",coeff.det[i]);
+		fprintf(fp,"%6f",coeff[0].det[i]);
 		fprintf(fp,",");
 	}
 	
+	WaveDecompose(signal_init,signal_len,db4_Lo_D,db4_len,db4_Hi_D,db4_len,coeff,5);
+
+
 
 	return 0;
 }
