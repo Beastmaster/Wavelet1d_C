@@ -11,6 +11,7 @@ Note: The length of the signal must less than 80 points
 #define _WAVELET_H_
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #ifdef __cplusplus
 extern "C" {

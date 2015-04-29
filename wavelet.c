@@ -6,7 +6,7 @@
 //Parameters: signal array, signal length, filter array, filter length, return convolve result array (malloc memory here)
 //			  Length of result is : lenSignal+lenFilter-1
 void WConvolve(double* signal, int lenSignal, const double* filter, int lenFilter,double* result)
-{
+{FILE* fp;
 	int i=0;
 	int j=0;
 	//if (result != NULL)
@@ -19,27 +19,44 @@ void WConvolve(double* signal, int lenSignal, const double* filter, int lenFilte
 	int nLenExt = lenFilter;
 	//length of temp array = sig_len + low_len + hig_len - 2
 	int ext_len = lenSignal+nLenExt+nLenExt-2; //extended array length
-	double* ext_signal = (double*) malloc(ext_len*sizeof(double));
+	//double* ext_signal = (double*) malloc(ext_len*sizeof(double));
+	double ext_signal[100];
 	WExtend(signal,lenSignal,ext_signal,nLenExt,NULL,NULL);
 
 	//2. convolve
 	//3. present valid component only (exclude extended component)
 	//for (i= 0; i < lenFilter; i++)
 	//{
+	//	result[i]=0;
 	//	for (j = 0; j <= i; j++)
 	//		result[i] += ext_signal[j] * filter[i - j];
 	//}
-	for (i = lenFilter; i < ext_len; i++)
+	for (i = lenFilter; i <= ext_len; i++)
 	{
+		result[i-lenFilter]=0;
 		for (j = 0; j <lenFilter; j++)
+		{
+			printf("%f,%f,%f\n",ext_signal[i - j],filter[j],result[i-lenFilter]);
 			result[i-lenFilter] += ext_signal[i - j] * filter[j];
+			printf("%f\n",result[i-lenFilter]);
+		}
 	}
 	//for (i = ext_len; i < ext_len + lenFilter - 1; i++)
 	//{
 	//	for (j = i - ext_len + 1; j < lenFilter; j++)
 	//		result[i] += ext_signal[i - j] * filter[j];
 	//}
-
+	//test code wite
+	//print for test
+	if ((fp = fopen("wconvolve_testxx", "w")) == NULL) {
+		perror("Error opening input file");
+		exit(-1);
+	}
+	for (i=0;i<100;i++)
+	{
+		fprintf(fp,"%6f",result[i]);
+		fprintf(fp,",");
+	}
 }
 
 
@@ -151,11 +168,25 @@ void WExtend(double* init_signal,int init_len,double* dest_signal,int ext_len,do
 void DWT(double* signal,int sig_len, const double* Lo_D,int low_len, const double* Hi_D,int hig_len ,WaveCoeff* coeff)
 {   
 	int i = 0;
-	double z[100];
+	double z[100]={0};
 	int len_result = sig_len+low_len-1;
-	
+	FILE* fp;
+
 	//convolve low pass filter
 	WConvolve(signal,sig_len,Lo_D,low_len,z);
+
+	//test code wite
+	//print for test
+	if ((fp = fopen("wconvolve_test", "w")) == NULL) {
+		perror("Error opening input file");
+		exit(-1);
+	}
+	for (i=0;i<100;i++)
+	{
+		fprintf(fp,"%6f",z[i]);
+		fprintf(fp,",");
+	}
+
 
 	for (i=1; i < len_result; i+=2)
 	{
