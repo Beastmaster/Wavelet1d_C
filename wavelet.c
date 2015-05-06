@@ -1,7 +1,13 @@
+/*
+By qinshuo
+2015.4.28
+
+Release function in matlab wavelet toolbox
+Some thing change in this release
+To accomplish high efficiency, I use fixed array as buff
+*/
+
 #include "wavelet.h"
-
-
-
 
 //Function:
 //Parameter: sig_length must be even number
@@ -111,10 +117,11 @@ void WExtend(double* init_signal,
 }
 
 
-//Function: basic convolution function
+//Function: amended convolution function
 //Parameters: signal array, signal length, filter array, filter length, return convolve result array (malloc memory here)
 //			  Length of result is : lenSignal+lenFilter-1
 //			  Length of fore_ext and back_ext is lenFilter-1
+//Note: Take the central part of the convolved result
 void WConvolve(double* signal, 
 			   int lenSignal, 
 			   const double* filter, 
@@ -195,20 +202,22 @@ void DWT(double* signal,
 	int len_result = sig_len+low_len-1;
 	FILE* fp;
 
+	//add length of app and det array
+	coeff->length = len_result/2+1;
 	//convolve low pass filter
 	WConvolve(signal,sig_len,Lo_D,low_len,z,fore_ext,back_ext);
 	//down sample here
-	for (i=1; i < len_result; i+=2)
+	for (i=0; i < len_result; i+=2)
 	{
-		coeff->app[(i-1)/2] = z[i];
+		coeff->capp[i/2] = z[i];
 	}
 
 	//convolve high pass filter
 	WConvolve(signal,sig_len,Hi_D,hig_len,z,fore_ext,back_ext);
 	//down sample here
-	for (i = 1; i < len_result; i+=2)
+	for (i = 0; i < len_result; i+=2)
 	{
-		coeff->det[(i-1)/2] = z[i];
+		coeff->cdet[i/2] = z[i];
 	}
 
 	//test code wite
@@ -260,40 +269,200 @@ void WaveDecompose(double* signal,
 	//decompose the first level
 	DWT(signal,sig_len,Lo_D,low_len,Hi_D,hig_len,&para_comtainer[0],NULL,NULL);
 	//decompose other levels
-	for (i=1;i<de_level;i++)
+	for (i=1;i<=de_level;i++)
 	{
-		DWT(para_comtainer[i-1].app,sig_len,Lo_D,low_len,Hi_D,hig_len,&para_comtainer[i],NULL,NULL);
-		sig_len = (sig_len+hig_len-1)/2;
+		DWT(para_comtainer[i-1].capp,para_comtainer[i-1].length,Lo_D,low_len,Hi_D,hig_len,&para_comtainer[i],NULL,NULL);
+	}
+
+}
+//Function: basic convolution function
+//Parameters: signal array, signal length, filter array, filter length, return convolve result array (malloc memory here)
+//			  Length of result is : lenSignal+lenFilter-1
+//Note: 
+void IWConvolve(double* signal, 
+			   int lenSignal, 
+			   const double* filter, 
+			   int lenFilter,
+			   double* result)
+{
+	unsigned char i,j=0;
+
+	for (i = 0; i < lenFilter; i++)
+	{
+		for ( j = 0; j <= i; j++)
+			result[i] += signal[j] * filter[i - j];
+	}
+	for ( i = lenFilter; i < lenSignal; i++)
+	{
+		for ( j = 0; j <lenFilter; j++)
+			result[i] += signal[i - j] * filter[j];
+	}
+	for ( i = lenSignal; i < lenSignal + lenFilter - 1; i++)
+	{
+		for ( j = i - lenSignal + 1; j < lenFilter; j++)
+			result[i] += signal[i - j] * filter[j];
+	}
+}
+
+
+//Function: discrete wavelet reverse transform
+//Parameters: signal, low pass reconstruct filter, high pass reconstruct filter
+//			 low_len and high_len must match
+//			 Length of coeff app and det is half
+//			 Length of result is 2*sig_len+filter_len+1
+//Note:  Up sample controversial, reference insert 0 in even number position
+//       While a book says to insert 0 in odd number position
+//		 Here we use the first solution
+void IDWT(double* signal,
+		  int sig_len, 
+		  const double* filter,
+		  int filter_len, 
+		  double* result,
+		  int result_len)
+{
+	unsigned char i=0;
+	double ups_signal[100] = {0};
+	double result_temp[100]= {0};
+	//size of output array is 2*signal_size -1
+	int ups_signal_len = 2*sig_len - 1;
+	//1. insert null point first
+	for (i = 1; i < sig_len; ++i)
+	{
+		ups_signal[2*i - 1] = 0;
+		ups_signal[2*i] = signal[i];
+	}
+	//2.convolve and exclude some points
+	IWConvolve(ups_signal,ups_signal_len,filter,filter_len,result_temp);//length of result_temp = 2*sig_len+filter_len-2
+	//length of final result = length(result_temp)-(2*filter_len-2)
+	for (i=(ups_signal_len+filter_len-1-result_len)/2;i<(ups_signal_len+filter_len-1-result_len)/2+result_len;i++)
+	{
+		result[i-(ups_signal_len+filter_len-1-result_len)/2] = result_temp[i];
+	}
+}
+
+
+//Function: discrete wavelet reverse transform
+//Parameters: signal, low pass decompose filter, high pass decompose
+//			 low_len and high_len must match
+//			 Length of coeff app and det is half
+//Note:   You must decompose first
+void WaveReconstruct(double* signal,
+					 int sig_len, 
+					 const double* Lo_R,
+					 int low_len, 
+					 const double* Hi_R,
+					 int hig_len,
+					 WaveCoeff* coeff,
+					 WaveRecon* recon,
+					 const char mode,
+					 int level)
+{
+	double result1[100] = {0};
+	double result2[100] = {0};
+	unsigned char i=level;
+	unsigned char j=0;
+	int len_result = 0;
+
+	switch (mode)
+	{
+	case 'a':
+		{
+			//reconstruct approximate
+			for (i=level;i>0;i--)
+			{
+				//length of result is upper level signal length
+				if (i==1)
+				{
+					len_result =sig_len;
+					recon[i-1].length = len_result;
+				}
+				else
+				{
+					len_result = coeff[i-2].length;
+					recon[i-1].length = len_result;
+				}
+				//idwt
+				if (i%2 == 0)
+				{
+					if((int)i==level)
+						IDWT(coeff[i-1].capp,coeff[i-1].length,Lo_R,low_len,result2,len_result);
+					else
+						IDWT(result1,coeff[i-1].length,Lo_R,low_len,result2,len_result);
+					//put result into recon
+					for (j=0;j<len_result;j++)
+					{
+						recon[i-1].capp[j] = result2[j];
+					}
+				}
+				else
+				{
+					if((int)i==level)
+						IDWT(coeff[i-1].capp,coeff[i-1].length,Lo_R,low_len,result1,len_result);
+					else
+						IDWT(result2,coeff[i-1].length,Lo_R,low_len,result1,len_result);
+					//put result into recon
+					for (j=0;j<len_result;j++)
+					{
+						recon[i-1].capp[j] = result1[j];
+					}
+				}
+			}
+			break;
+		}
+	case 'd':
+		{
+			//reconstruct details
+			for (i=level;i>0;i--)
+			{
+				//length of result is upper level signal length
+				if (i==1)
+				{
+					len_result =sig_len;
+					recon[i-1].length = len_result;
+				}
+				else
+				{
+					len_result = coeff[i-2].length;
+					recon[i-1].length = len_result;
+				}
+				//idwt
+				if (i%2 == 0)
+				{
+					if((int)i==level)
+						IDWT(coeff[i-1].cdet,coeff[i-1].length,Hi_R,low_len,result2,len_result);
+					else
+						IDWT(result1,coeff[i-1].length,Hi_R,low_len,result2,len_result);
+					//put result into recon
+					for (j=0;j<len_result;j++)
+					{
+						recon[i-1].cdet[j] = result2[j];
+					}
+				}
+				else
+				{
+					if((int)i==level)
+						IDWT(coeff[i-1].cdet,coeff[i-1].length,Hi_R,low_len,result1,len_result);
+					else
+						IDWT(result2,coeff[i-1].length,Hi_R,low_len,result1,len_result);
+					//put result into recon
+					for (j=0;j<len_result;j++)
+					{
+						recon[i-1].cdet[j] = result1[j];
+					}
+				}
+			}
+			break;
+		}
+	default:
+		{
+			printf("error para\n");
+			break;
+		}
 	}
 
 }
 
-//Function: discrete wavelet reverse transform
-//Parameters: signal, low pass decompose filter, high pass decompose
-//			 low_len and high_len must match
-//			 Length of coeff app and det is half
-void IDWT(double* signal,int sig_len, 
-		  const double* Lo_R,
-		  int low_len, 
-		  const double* Hi_R,
-		  int hig_len,
-		  WaveCoeff* coeff,
-		  double* result)
-{
-	unsigned char i=0;
-
-	//1. insert null point first
 
 
 
-}
 
-
-//Function: discrete wavelet reverse transform
-//Parameters: signal, low pass decompose filter, high pass decompose
-//			 low_len and high_len must match
-//			 Length of coeff app and det is half
-void WaveReconstruct(double* signal,int sig_len, const double* Lo_R,int low_len, const double* Hi_R,int hig_len ,WaveCoeff* coeff,int level)
-{
-
-}

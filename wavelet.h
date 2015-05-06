@@ -3,8 +3,7 @@ By qinshuo
 2015.4.28
 
 Note: The length of the signal must less than 80 points
-	  Level of decompose is less than 6
-	  
+	  Level of decompose is less than 6  
 */
 
 
@@ -32,9 +31,17 @@ extern "C" {
 	// Compute coefficients of approximation.
 	typedef struct 
 	{
-		double app[100];
-		double det[100];
+		int length;
+		double capp[100];
+		double cdet[100];
 	} WaveCoeff;
+
+	typedef struct
+	{
+		int length;
+		double capp[100];
+		double cdet[100];
+	} WaveRecon;
 
 	//down sample function
 	void DownSample(double* signal,int sig_length,double* result);
@@ -52,12 +59,12 @@ extern "C" {
 	//multi level wavelet transform
 	void WaveDecompose(double* signal,int sig_len, const double* Lo_D,int low_len, const double* Hi_D,int hig_len,WaveCoeff* para_comtainer,int de_level);
 	
+	void IWConvolve(double* signal, int lenSignal, const double* filter, int lenFilter, double* result);
 	//discrete wavelet inverse transform for one level
-	void IDWT(double* signal,int sig_len, const double* Lo_D,int low_len, const double* Hi_D,int hig_len ,WaveCoeff* coeff,double* result);
+	void IDWT(double* signal,int sig_len, const double* filter,int filter_len,double* result);
 	//re-construct the wave for a specified level
-	void WaveReconstruct(double* signal,int sig_len, const double* Lo_R,int low_len, const double* Hi_R,int hig_len ,WaveCoeff* coeff,int level);
-
-
+	void WaveReconstruct(double* signal,int sig_len, const double* Lo_R,int low_len, const double* Hi_R,int hig_len ,WaveCoeff* coeff,WaveRecon* recon,const char mode,int level);
+	
 
 #ifdef __cplusplus
 }
