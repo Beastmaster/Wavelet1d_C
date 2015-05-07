@@ -170,6 +170,7 @@ void WConvolve(double* signal,
 	//}
 	//test code wite
 	//print for test
+<<<<<<< HEAD
 	//if ((fp = fopen("wconvolve_testxx", "w")) == NULL) {
 	//	perror("Error opening input file");
 	//	exit(-1);
@@ -179,6 +180,17 @@ void WConvolve(double* signal,
 	//	fprintf(fp,"%6f",result[i]);
 	//	fprintf(fp,",");
 	//}
+=======
+	if ((fp = fopen("wconvolve_testxx", "w")) == NULL) {
+		perror("Error opening input file");
+		exit(-1);
+	}
+	for (i=0;i<100;i++)
+	{
+		fprintf(fp,"%6f",result[i]);
+		fprintf(fp,",");
+	}
+>>>>>>> 90bdf36f72f6eafefa47bb267588cd73b61b18de
 }
 
 
@@ -222,6 +234,7 @@ void DWT(double* signal,
 
 	//test code wite
 	//print for test
+<<<<<<< HEAD
 	//if ((fp = fopen("wconvolve_test", "w")) == NULL) {
 	//	perror("Error opening input file");
 	//	exit(-1);
@@ -232,6 +245,18 @@ void DWT(double* signal,
 	//	fprintf(fp,",");
 	//}
 	//fclose(fp);
+=======
+	if ((fp = fopen("wconvolve_test", "w")) == NULL) {
+		perror("Error opening input file");
+		exit(-1);
+	}
+	for (i=0;i<100;i++)
+	{
+		fprintf(fp,"%6f",z[i]);
+		fprintf(fp,",");
+	}
+	fclose(fp);
+>>>>>>> 90bdf36f72f6eafefa47bb267588cd73b61b18de
 }
 
 
