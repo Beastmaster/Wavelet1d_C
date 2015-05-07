@@ -61,11 +61,7 @@ extern "C" {
 	
 	void IWConvolve(double* signal, int lenSignal, const double* filter, int lenFilter, double* result);
 	//discrete wavelet inverse transform for one level
-<<<<<<< HEAD
 	void IDWT(double* signal,int sig_len, const double* filter,int filter_len,double* result,int result_len);
-=======
-	void IDWT(double* signal,int sig_len, const double* filter,int filter_len,double* result);
->>>>>>> 90bdf36f72f6eafefa47bb267588cd73b61b18de
 	//re-construct the wave for a specified level
 	void WaveReconstruct(double* signal,int sig_len, const double* Lo_R,int low_len, const double* Hi_R,int hig_len ,WaveCoeff* coeff,WaveRecon* recon,const char mode,int level);
 	
