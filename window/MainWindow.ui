@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1052</width>
-    <height>785</height>
+    <width>1151</width>
+    <height>859</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QWidget" name="verticalWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>800</x>
       <y>0</y>
       <width>321</width>
       <height>341</height>
@@ -43,52 +43,52 @@
         <widget class="QComboBox" name="port_name_Comb">
          <item>
           <property name="text">
-           <string>Com1</string>
+           <string>com1</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Com2</string>
+           <string>com2</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Com3</string>
+           <string>com3</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Com4</string>
+           <string>com4</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Com5</string>
+           <string>com5</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Com6</string>
+           <string>com6</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Com7</string>
+           <string>com7</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Com8</string>
+           <string>com8</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Com9</string>
+           <string>com9</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Com10</string>
+           <string>com10</string>
           </property>
          </item>
         </widget>
@@ -256,7 +256,28 @@
       </layout>
      </item>
      <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Timeout</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="timeout_spinBox"/>
+       </item>
+      </layout>
+     </item>
+     <item>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QRadioButton" name="is_Open_Btn">
+         <property name="text">
+          <string>Open</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QPushButton" name="open_port_Btn">
          <property name="text">
@@ -278,7 +299,7 @@
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>810</x>
       <y>370</y>
       <width>301</width>
       <height>321</height>
@@ -325,15 +346,66 @@
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>631</width>
-      <height>591</height>
+      <x>20</x>
+      <y>30</y>
+      <width>741</width>
+      <height>671</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_4">
      <item>
-      <widget class="QwtPlot" name="qwtPlot"/>
+      <layout class="QHBoxLayout" name="horizontalLayout_11">
+       <item>
+        <widget class="QwtPlot" name="qwtPlot"/>
+       </item>
+       <item>
+        <widget class="QWidget" name="verticalWidget" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMaximumSize</enum>
+          </property>
+          <item>
+           <widget class="QSlider" name="y_pos_Scope">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="y_neg_Scope">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>Number of Points to display                       </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="num_points_Slider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -349,6 +421,13 @@
        </item>
       </layout>
      </item>
+     <item>
+      <widget class="QRadioButton" name="en_filter_Btn">
+       <property name="text">
+        <string>Enable filter</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>
@@ -357,7 +436,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1052</width>
+     <width>1151</width>
      <height>31</height>
     </rect>
    </property>
