@@ -13,6 +13,7 @@ Description:
 #include <QMainWindow>
 #include <QApplication>
 #include <QObject>
+#include <QThread>
 #include <QByteArray>
 #include <QString>
 
@@ -102,7 +103,7 @@ private:
 
 
 
-class QwtPlotView:QObject
+class QwtPlotView:QThread
 {
 	Q_OBJECT
 
@@ -123,7 +124,7 @@ public:
 	void change_X_Scope(int);
 
 	public slots:
-		void refresh_View();
+		void run();
 
 private:
 	QTimer* timer_plot;

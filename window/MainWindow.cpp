@@ -8,52 +8,52 @@
 
 const double test_data[] = 
 {
-	110.242829
-	,110.623746
-	,110.437564
-	,110.0586238
-	,110.0838475
-	,110.507896
-	,110.776643
-	,110.587504
-	,110.322593
-	,110.496892
-	,111.0053
-	,111.1651
-	,110.618749
-	,-110.145541
-	,-110.341168
-	,110.143415
-	,110.635302
-	,110.540987
-	,110.0865776
-	,-110.0632829
-	,110.283049
-	,110.632739
-	,110.540891
-	,110.233634
-	,110.263
-	,110.705935
-	,110.973702
-	,110.584181
-	,-110.16679
-	,-110.509014
-	,-110.159113
-	,110.357462
-	,110.38421
-	,-110.0202079
-	,-110.23941
-	,110.0431232
-	,110.432933
-	,110.41934
-	,110.0982847
-	,110.0324241
-	,110.448395
-	,110.852458
-	,110.644285
-	,-110.0736648
-	,-110.55856
-	,-110.344253
+	0.242829
+	,0.623746
+	,0.437564
+	,0.0586238
+	,0.0838475
+	,0.507896
+	,0.776643
+	,0.587504
+	,0.322593
+	,0.496892
+	,1.0053
+	,1.1651
+	,0.618749
+	,-0.145541
+	,-0.341168
+	,0.143415
+	,0.635302
+	,0.540987
+	,0.0865776
+	,-0.0632829
+	,0.283049
+	,0.632739
+	,0.540891
+	,0.233634
+	,0.263
+	,0.705935
+	,0.973702
+	,0.584181
+	,-0.16679
+	,-0.509014
+	,-0.159113
+	,0.357462
+	,0.38421
+	,-0.0202079
+	,-0.23941
+	,0.0431232
+	,0.432933
+	,0.41934
+	,0.0982847
+	,0.0324241
+	,0.448395
+	,0.852458
+	,0.644285
+	,-0.0736648
+	,-0.55856
+	,-0.344253
 	,0.207231
 	,0.380501
 	,0.03622
@@ -265,13 +265,13 @@ void MainWindow::Para_Init()
 
 	check_port_Timer = new QTimer(this);
 	test_timer = new QTimer(this);
-	//test_timer->start(30);
+	test_timer->start(2);
 	test_timer_cnt = 0;
 
 	//start timer here
 	check_port_Timer->start(500);
 	this->ui->refresh_Time->setRange(0,1000);
-	this->ui->refresh_Time->setValue(50);
+	this->ui->refresh_Time->setValue(10);
 
 	comName = "com1";
 	myComSetting.BaudRate = BAUD9600;
@@ -362,7 +362,7 @@ void MainWindow::pass_Dot(double in_data)
 	//do transform
 	WaveDecompose(signal_init,signal_len,db4_Lo_D,db4_len,db4_Hi_D,db4_len,coeff,de_level);
 	WaveReconstruct(signal_init,signal_len,db4_Lo_R,db4_len,db4_Hi_R,db4_len,coeff,recon,'a',de_level);
-	long end = clock();
+	
 	//std::cout<<end-start<<std::endl;
 	if (this->ui->en_filter_Btn->isChecked())
 	{
@@ -372,7 +372,8 @@ void MainWindow::pass_Dot(double in_data)
 	{
 		this->plot_view->pass_Dot(in_data);
 	}
-	std::cout<<in_data<<std::endl;
+	long end = clock();
+	//std::cout<<in_data<<std::endl;
 }
 
 void MainWindow::send_Data()
@@ -636,7 +637,9 @@ void MainWindow::test_timer_func()
 	//double pi = 3.1415926;
 	double data_buff = test_data[test_timer_cnt];
 	test_timer_cnt++;
+
 	emit get_data_Done(data_buff);
+
 }
 
 
@@ -680,15 +683,16 @@ QwtPlotView::QwtPlotView(QwtPlot* plot)
 	curve->setRawSamples(point_coor.x_val,point_coor.y_val,point_coor.length);
 
 	timer_plot = new QTimer;
-	timer_plot->start(50);
+	timer_plot->start(5);
 	//connect 
-	connect(timer_plot,SIGNAL(timeout()),this,SLOT(refresh_View()));
+	connect(timer_plot,SIGNAL(timeout()),this,SLOT(run()));
 }
 
 QwtPlotView::~QwtPlotView()
 {
 	//disconnect
-	connect(timer_plot,SIGNAL(timeout()),this,SLOT(refresh_View()));
+	this->exit();
+	disconnect(timer_plot,SIGNAL(timeout()),this,SLOT(run()));
 	//stop timer
 	timer_plot->stop();
 	delete timer_plot;
@@ -713,7 +717,7 @@ void QwtPlotView::setInterval(int inter)
 	timer_plot->start(inter);
 }
 
-void QwtPlotView::refresh_View()
+void QwtPlotView::run()
 {
 	if (point_cnt>this->num_points_dis-1)
 	{
