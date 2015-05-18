@@ -17,6 +17,11 @@ Description:
 #include <QByteArray>
 #include <QString>
 
+//print screen
+#include <QPixmap>
+#include <QDateTime>
+#include <QTextStream>
+
 #include <QTimer>
 #include <time.h>
 
@@ -57,6 +62,8 @@ public:
 		void set_dataBits(int);
 		void set_Parity(int);
 		void set_stopBits(int);
+		void set_Filter(int);
+		void set_Level(int);
 		void receive_Data();
 		void info_Panel_Scroll();
 		void pass_Dot(double);
@@ -66,6 +73,9 @@ public:
 		void change_X_Scope(int);
 		void change_Y_pos_Scope(int);
 		void change_Y_neg_Scope(int);
+		void check_save_Data(bool checked);
+		void save_Dot(double);
+		void snip_Screen();
 		
 	signals:
 		void get_data_Done(double);
@@ -78,6 +88,7 @@ protected:
 	double signal_init[30];
 	int signal_len;
 	int de_level;
+	int filter_name;
 	WaveCoeff coeff[10];
 	WaveRecon recon[10];
 
@@ -85,10 +96,13 @@ private:
 	Ui::MainWindow	*ui;
 	PortSettings myComSetting;
 	Win_QextSerialPort* myCom;
+	QByteArray com_temp;
 	QString comName;
 	QTimer* check_port_Timer; //check serial port status 500ms
 	QTimer* test_timer;
 	int     test_timer_cnt;
+	QTextStream* data_text;
+	QFile data_file;
 
 	//private functions
 	void Para_Init();
