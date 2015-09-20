@@ -3524,9 +3524,8 @@ void MainWindow::Para_Init()
 
 	//--------------init signal process parameters------------//
 	long_length = 100;
-	signal_init[30];
-	memset(signal_init,0,30*sizeof(double));
-	signal_len = 30;
+	signal_len = 64;
+	memset(signal_init,0,signal_len*sizeof(double));
 	de_level = 5;
 	filter_name = 0;
 	memset(coeff,0,10*sizeof(WaveCoeff));
@@ -3642,6 +3641,7 @@ void MainWindow::pass_Dot(double in_data)
 		{
 			means = means+signal_init[j]; 
 		}
+		//std::cout<<recon[0].capp[signal_len-10]<<std::endl;
 		this->plot_view->pass_Dot(recon[0].capp[signal_len-10]-means/signal_len);
 	}
 	else

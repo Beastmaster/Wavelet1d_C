@@ -85,7 +85,7 @@ protected:
 
 	//--------------for signal process--------------//
 	int long_length;
-	double signal_init[30];
+	double signal_init[64];
 	int signal_len;
 	int de_level;
 	int filter_name;

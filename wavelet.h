@@ -13,6 +13,8 @@ Note: The length of the signal must less than 80 points
 #include <stdlib.h>
 #include <stdio.h>
 
+#define BUFF_LEN 150
+
 #ifdef __cplusplus
 extern "C" {
 #endif

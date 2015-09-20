@@ -144,7 +144,7 @@ void WConvolve(double* signal,
 	//length of temp array = sig_len + low_len + hig_len - 2
 	int ext_len = lenSignal+nLenExt+nLenExt-2; //extended array length
 	//double* ext_signal = (double*) malloc(ext_len*sizeof(double));
-	double ext_signal[100] = {0};
+	double ext_signal[BUFF_LEN] = {0};
 	WExtend(signal,lenSignal,ext_signal,nLenExt,fore_ext,back_ext);
 
 	//2. convolve
@@ -198,7 +198,7 @@ void DWT(double* signal,
 		 double* back_ext)	//extend array in the end
 {   
 	unsigned char i = 0;
-	double z[100]={0};
+	double z[BUFF_LEN]={0};
 	int len_result = sig_len+low_len-1;
 	FILE* fp;
 
@@ -321,8 +321,8 @@ void IDWT(double* signal,
 		  int result_len)
 {
 	unsigned char i=0;
-	double ups_signal[100] = {0};
-	double result_temp[100]= {0};
+	double ups_signal[BUFF_LEN] = {0};
+	double result_temp[BUFF_LEN]= {0};
 	//size of output array is 2*signal_size -1
 	int ups_signal_len = 2*sig_len - 1;
 	//1. insert null point first
@@ -357,8 +357,8 @@ void WaveReconstruct(double* signal,
 					 const char mode,
 					 int level)
 {
-	double result1[100] = {0};
-	double result2[100] = {0};
+	double result1[BUFF_LEN] = {0};
+	double result2[BUFF_LEN] = {0};
 	unsigned char i=level;
 	unsigned char j=0;
 	int len_result = 0;
