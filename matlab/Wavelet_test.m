@@ -2,9 +2,9 @@
 %Date: 2015.9.21
 %Organization: RC-MIC(CUHK)
 %Description:
-%This is a test file for ECG signal process in MRI environment
-%Basic Method is slide window
-%
+%  This is a test file for ECG signal process in MRI environment
+%  Basic Method is slide window
+%  Method is Mallat's Pyramid Algorithm
 
 %load data from file
 %[filename,filepath] = uigetfile('*.*');
