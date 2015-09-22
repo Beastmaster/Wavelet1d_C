@@ -7,8 +7,8 @@
 %
 
 %load data from file
-[filename,filepath] = uigetfile('*.*');
-fullname=fullfile(filepath,filename);
+%[filename,filepath] = uigetfile('*.*');
+%fullname=fullfile(filepath,filename);
 
 
 %decompose level
@@ -16,30 +16,36 @@ level=5;
 
 %data resources
 Src=load(fullname);
+%Src=Src(1:150);
+%Src=[Src;Src;Src;Src;Src];
 %Reconstructed data
 Des=[];
 %decompose window
-window_width = 100;
-step          = 1;
-overlap       = window_length-step;
+window_width = 300;
+step         = round(window_width/5);
+shift        = 100;
+overlap      = window_width-step;
 
 %wavelet types
-wave_type_list={'db4';'db5';'haar';'coif1';'sym2'};
-type_choice = 1;
+wave_type_list={'haar';'db4';'db5';'coif3';'coif4';'sym3';'sym4';};
+type_choice = 4;
 wave_type = wave_type_list{type_choice};
 
 
 begin_=1;
-step_=10;
-end_=length(Src)-window_width;
+step_ =step;
+end_  =length(Src);
 %end_= 0;
 
 for i=begin_:step_:end_
 %%%%   loop body   %%%%
 
 %select some data from the source
-data=Src(i:i+window_width-1);
-
+if (i+window_width-1)>length(Src)
+    continue
+else
+    data=Src(i:i+window_width-1);
+end
 %wavelet fileters
 [Lo_D,Hi_D,Lo_R,Hi_R] = wfilters(wave_type);
 
@@ -50,22 +56,37 @@ data=Src(i:i+window_width-1);
 re_data=wrcoef('a',C,L,wave_type,level);
 
 %select points and add to result(Des)
-Des=[Des,re_data(1:1+step-1)] ;
-
+Des=[Des;re_data(1+shift:step_+shift)] ;
 %%%    loop body  %%%%
 end
+
+%%%  one time wavelet %%%
+[C2,L2]=wavedec(Src,level,wave_type);
+Des2=wrcoef('a',C2,L2,wave_type,level);
+
+%%% stationary wavelet algorithm %%%
+%re_data=swt(Src,level,wave_type);
+%Des3=swt(re_data,Lo_D,Hi_D);
 
 
 %%%   plot here  %%%
 
 figure(1)
-row=2;
+row=3;
 col=1;
 % plot original signal
 subplot(row,col,1)
-plot(Src)
+plot(Src(1:length(Des)))
 title('Original signal')
 % plot filtered signal
 subplot(row,col,2)
 plot(Des)
-title('Filtered title')
+title('Filtered signal')
+% plot one time filterd signal
+subplot(row,col,3)
+plot(Des2(1:length(Des)))
+title('One time filter')
+
+
+
+
