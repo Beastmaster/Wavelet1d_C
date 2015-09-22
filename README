@@ -1,14 +1,16 @@
+Author: Qin Shuo
+Organization: RC-MIC(CUHK)
 
+Function: 
+  For signal process of ECG
 
-For signal process of ECG
-
-Implement the same function as matlab wavelet toolbox
-
-The .cpp & .hpp files is copied from the net
-
-
-The C language files is created by me and can be embeded into MCU
-
+Utility:
+  Implement the same function as matlab wavelet toolbox
+  The .cpp & .hpp files is copied from the net
+  The C language files is created by me and can be embeded into MCU
+  
+Attention:
+Qwt6 required!
 
 Next step:
 Implement real-time display of wave through QT
