@@ -57,10 +57,10 @@ re_data=wrcoef('a',C,L,wave_type,level);
 %select points middle of the series
 re_data=re_data(1+shift:step_+shift)
 
-%%apply moving average to exclude pulse between steps
-% proved useless
+%
 if i==1
 else
+%apply moving average to exclude pulse between steps
 ave_len=10;
 temp=Des(length(Des)-10:length(Des)); %select last 10 components in Des
     for j=1:ave_len
