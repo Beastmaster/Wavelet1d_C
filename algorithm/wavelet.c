@@ -20,7 +20,7 @@ void DownSample(double* signal,int sig_length,double* result)
 	//	free(result);
 	//}
 	//result = (double*) malloc(sig_length/2*(sizeof(double)));
-	unsigned char i=0;
+	int i=0;
 	for (i=0;i<sig_length/2;i++)
 	{
 		result[i] = signal[2*i];
@@ -42,7 +42,7 @@ void UpSample(double* signal,int sig_length,double* result)
 	//result = (double*) malloc(sig_length*2*(sizeof(double)));
 	
 	//even: x
-	unsigned char i=0;
+	int i=0;
 	for (i=0;i<sig_length*2;i++)
 	{
 		result[2*i] = signal[i];
@@ -73,7 +73,7 @@ void WExtend(double* init_signal,
 			 double* fore_ext,  //ext_len = len_filter-1
 			 double* back_ext)  //ext_len = len_filter-1
 {
-	unsigned char i=0;
+	int i=0;
 
 	if (init_signal==NULL || dest_signal==NULL)
 	{
@@ -131,8 +131,8 @@ void WConvolve(double* signal,
 			   double* back_ext)	//extend array in the end
 {
 	FILE* fp;
-	unsigned char i=0;
-	unsigned char j=0;
+	int i=0;
+	int j=0;
 	//if (result != NULL)
 	//{
 	//	free(result);
@@ -197,10 +197,10 @@ void DWT(double* signal,
 		 double* fore_ext,	//extend array in the front
 		 double* back_ext)	//extend array in the end
 {   
-	unsigned char i = 0;
+	int i = 0;
 	double z[BUFF_LEN]={0};
 	int len_result = sig_len+low_len-1;
-	FILE* fp;
+	//FILE* fp;
 
 	//add length of app and det array
 	coeff->length = len_result/2+1;
@@ -247,7 +247,7 @@ void WaveDecompose(double* signal,
 				   WaveCoeff* para_comtainer,
 				   int de_level)
 {
-	unsigned char i=0;
+	int i=0;
 
 	//calculate validation of 
 	if (de_level<1)
@@ -285,7 +285,7 @@ void IWConvolve(double* signal,
 			   int lenFilter,
 			   double* result)
 {
-	unsigned char i,j=0;
+	int i,j=0;
 
 	for (i = 0; i < lenFilter; i++)
 	{
@@ -320,7 +320,7 @@ void IDWT(double* signal,
 		  double* result,
 		  int result_len)
 {
-	unsigned char i=0;
+	int i=0;
 	double ups_signal[BUFF_LEN] = {0};
 	double result_temp[BUFF_LEN]= {0};
 	//size of output array is 2*signal_size -1
@@ -360,7 +360,7 @@ void WaveReconstruct(double* signal,
 	double result1[BUFF_LEN] = {0};
 	double result2[BUFF_LEN] = {0};
 	unsigned char i=level;
-	unsigned char j=0;
+	int j=0;
 	int len_result = 0;
 
 	switch (mode)

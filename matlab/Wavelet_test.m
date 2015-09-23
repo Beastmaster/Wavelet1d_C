@@ -8,8 +8,8 @@
 
 %load data from file
 %[filename,filepath] = uigetfile('*.*');
-%fullname=fullfile(filepath,filename);
-
+fullname=fullfile(filepath,filename);
+fullname='C:/D/wavelet1d_C/build/algorithm/test.txt'
 
 %decompose level
 level=5;
@@ -21,14 +21,14 @@ Src=load(fullname);
 %Reconstructed data
 Des=[];
 %decompose window
-window_width = 300;
-step         = round(window_width/5);
-shift        = 100;
+window_width = 256;
+step         = round(window_width/200);
+shift        = round(window_width/3);
 overlap      = window_width-step;
 
 %wavelet types
 wave_type_list={'haar';'db4';'db5';'coif3';'coif4';'sym3';'sym4';};
-type_choice = 4;
+type_choice = 2;
 wave_type = wave_type_list{type_choice};
 
 
@@ -62,9 +62,9 @@ re_data=re_data(1+shift:step_+shift)
 if i==1
 else
 ave_len=10;
-temp=Des(length(Des)-10:length(Des)); %select last 10 components in Des
+%temp=Des(length(Des)-10:length(Des)); %select last 10 components in Des
     for j=1:ave_len
-       temp=[temp(j:length(temp));re_data(1:j)];
+       %temp=[temp(j:length(temp));re_data(1:j)];
        %re_data(j)=mean(temp);
     end
 end

@@ -18,6 +18,7 @@ ${CMAKE_CURRENT_BINARY_DIR}
 )
 include_directories(
 serialport
+algorithm
 window
 )
 add_subdirectory(serialport)

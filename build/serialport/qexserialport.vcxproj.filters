@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\D\wavelet1d_C\serialport\qextserialbase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\D\wavelet1d_C\serialport\qextserialport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\D\wavelet1d_C\serialport\win_qextserialport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\D\wavelet1d_C\build\serialport\moc_qextserialbase.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\D\wavelet1d_C\build\serialport\moc_qextserialport.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\D\wavelet1d_C\build\serialport\moc_win_qextserialport.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\D\wavelet1d_C\serialport\qextserialbase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\D\wavelet1d_C\serialport\qextserialport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\D\wavelet1d_C\serialport\win_qextserialport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\D\wavelet1d_C\serialport\CMakeLists.txt" />
+    <CustomBuild Include="C:\D\wavelet1d_C\build\CMakeFiles\c5f44e916cf1d85762ddd55a5fd64d87\moc_qextserialbase.cxx.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\D\wavelet1d_C\build\CMakeFiles\c5f44e916cf1d85762ddd55a5fd64d87\moc_qextserialport.cxx.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\D\wavelet1d_C\build\CMakeFiles\c5f44e916cf1d85762ddd55a5fd64d87\moc_win_qextserialport.cxx.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{7038F9E8-6AD0-4573-9B08-FBF585B0B8CB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{D293FD78-2651-4F7A-9EC1-12E5C9616366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{6612FE5E-E46C-47E2-B0F3-5C93459BFED9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

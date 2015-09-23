@@ -1,0 +1,19 @@
+﻿生成启动时间为 2015/9/23 18:52:21。
+     1>项目“C:\D\wavelet1d_C\build\ECG.vcxproj”在节点 2 上(Build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“ECG.dir\Release\ECG.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       CustomBuild:
+         所有输出均为最新。
+       ClCompile:
+         所有输出均为最新。
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\D\wavelet1d_C\build\Release\ECG.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib serialport\Release\qexserialport.lib algorithm\Release\wavelet_c.lib algorithm\Release\wavelet_cpp.lib window\Release\window.lib C:\Qt\4.8.6\lib\QtGui4.lib C:\Qt\4.8.6\lib\QtCore4.lib C:\D\Qt\4.8.6\lib\qwt.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:/D/wavelet1d_C/build/Release/ECG.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/D/wavelet1d_C/build/Release/ECG.lib" /MACHINE:X64  /machine:x64 ECG.dir\Release\main.obj
+         ECG.vcxproj -> C:\D\wavelet1d_C\build\Release\ECG.exe
+       FinalizeBuildStatus:
+         正在删除文件“ECG.dir\Release\ECG.unsuccessfulbuild”。
+         正在对“ECG.dir\Release\ECG.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“C:\D\wavelet1d_C\build\ECG.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.35

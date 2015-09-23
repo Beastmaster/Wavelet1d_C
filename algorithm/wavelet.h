@@ -13,7 +13,7 @@ Note: The length of the signal must less than 80 points
 #include <stdlib.h>
 #include <stdio.h>
 
-#define BUFF_LEN 150
+#define BUFF_LEN 300
 
 #ifdef __cplusplus
 extern "C" {
@@ -71,15 +71,15 @@ extern "C" {
 	typedef struct 
 	{
 		int length;
-		double capp[100];
-		double cdet[100];
+		double capp[BUFF_LEN];
+		double cdet[BUFF_LEN];
 	} WaveCoeff;
 
 	typedef struct
 	{
 		int length;
-		double capp[100];
-		double cdet[100];
+		double capp[BUFF_LEN];
+		double cdet[BUFF_LEN];
 	} WaveRecon;
 
 	//down sample function
@@ -87,6 +87,7 @@ extern "C" {
 	//up sample function
 	void UpSample(double* signal,int sig_length,double* result);
 	//create wavelet filters
+	//to be implemented
 	void CreateDB4(double*,int*);
 
 	//extend array in the front and end

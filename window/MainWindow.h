@@ -38,6 +38,8 @@ Description:
 #include <qwt_symbol.h>
 #include <qwt_legend.h>
 
+#define SIGNAL_LEN 128
+
 class QwtPlotView;
 
 namespace Ui {
@@ -85,7 +87,7 @@ protected:
 
 	//--------------for signal process--------------//
 	int long_length;
-	double signal_init[64];
+	double signal_init[SIGNAL_LEN];
 	int signal_len;
 	int de_level;
 	int filter_name;
