@@ -22,9 +22,7 @@ window
 )
 add_subdirectory(serialport)
 add_subdirectory(window)
-
-add_library(wavelet_c wavelet.c wavelet.h)
-add_library(wavelet_cpp Wavelet.cpp Wavelet.hpp)
+add_subdirectory(algorithm)
 
 
 add_executable(ECG main.cpp)
