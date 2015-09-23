@@ -1,9 +1,0 @@
-C:/D/wavelet1d_C/build/CMakeFiles/ECG.dir
-C:/D/wavelet1d_C/build/algorithm/CMakeFiles/firwin.dir
-C:/D/wavelet1d_C/build/serialport/CMakeFiles/qexserialport.dir
-C:/D/wavelet1d_C/build/algorithm/CMakeFiles/wavelet_c.dir
-C:/D/wavelet1d_C/build/window/CMakeFiles/ALL_BUILD.dir
-C:/D/wavelet1d_C/build/window/CMakeFiles/window.dir
-C:/D/wavelet1d_C/build/algorithm/CMakeFiles/wavelet_algorithm.dir
-C:/D/wavelet1d_C/build/algorithm/CMakeFiles/wavelet_cpp.dir
-C:/D/wavelet1d_C/build/CMakeFiles/ZERO_CHECK.dir
