@@ -1,4 +1,4 @@
-message("seek to qt serial port")
+message("seek to qt window dir")
 cmake_minimum_required(VERSION 2.8)
 Project(window)
 

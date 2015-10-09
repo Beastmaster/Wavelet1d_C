@@ -1,4 +1,4 @@
-message("seek to qt serial port")
+message("seek wavelet algorithm dir")
 cmake_minimum_required(VERSION 2.8)
 
 

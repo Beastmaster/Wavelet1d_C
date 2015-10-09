@@ -1,0 +1,16 @@
+# CMake generation dependency list for this directory.
+C:/D/wavelet1d_C/serialport/CMakeLists.txt
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/FindQt4.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/CheckCXXSymbolExists.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/CheckSymbolExists.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/MacroAddFileDependencies.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/CMakeParseArguments.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/CMakePushCheckState.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/Qt4ConfigDependentSettings.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/Qt4Macros.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/UseQt4.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/CMakeConfigurableFile.in
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/CMakeConfigurableFile.in
+C:/Program Files (x86)/CMake/share/cmake-3.3/Modules/CMakeConfigurableFile.in

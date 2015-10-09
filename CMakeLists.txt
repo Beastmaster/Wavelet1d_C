@@ -1,4 +1,4 @@
-message("seek to qt serial port")
+message("Configure top level")
 cmake_minimum_required(VERSION 2.8)
  
 PROJECT(ECG)

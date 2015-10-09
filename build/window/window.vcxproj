@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{8C558D9D-D7F5-44AB-A457-77FEA3917DC9}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>window</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\D\wavelet1d_C\build\window\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">window.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">window</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\D\wavelet1d_C\build\window\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">window.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">window</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\D\wavelet1d_C\build\window\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">window.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">window</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\D\wavelet1d_C\build\window\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">window.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">window</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Qt\4.8.6\include;C:\Qt\4.8.6\include\QtGui;C:\Qt\4.8.6\include\QtCore;C:\D\Qt\qwt-6.1.2\src;C:\D\wavelet1d_C;C:\D\wavelet1d_C\build;C:\D\wavelet1d_C\serialport;C:\D\wavelet1d_C\algorithm;C:\D\wavelet1d_C\window;C:\D\wavelet1d_C\build\window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\D\wavelet1d_C\window\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/D/wavelet1d_C/window/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/D/wavelet1d_C -BC:/D/wavelet1d_C/build --check-stamp-file C:\D\wavelet1d_C\build\window\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/D/wavelet1d_C/window/CMakeLists.txt;C:\D\wavelet1d_C\window\CMakeLists.txt;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindQt4.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckCXXSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\MacroAddFileDependencies.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakePushCheckState.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Qt4ConfigDependentSettings.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Qt4Macros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\UseQt4.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeConfigurableFile.in;C:\D\wavelet1d_C\window\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\D\wavelet1d_C\build\window\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/D/wavelet1d_C/window/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/D/wavelet1d_C -BC:/D/wavelet1d_C/build --check-stamp-file C:\D\wavelet1d_C\build\window\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/D/wavelet1d_C/window/CMakeLists.txt;C:\D\wavelet1d_C\window\CMakeLists.txt;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindQt4.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckCXXSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\MacroAddFileDependencies.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakePushCheckState.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Qt4ConfigDependentSettings.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Qt4Macros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\UseQt4.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeConfigurableFile.in;C:\D\wavelet1d_C\window\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\D\wavelet1d_C\build\window\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/D/wavelet1d_C/window/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/D/wavelet1d_C -BC:/D/wavelet1d_C/build --check-stamp-file C:\D\wavelet1d_C\build\window\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/D/wavelet1d_C/window/CMakeLists.txt;C:\D\wavelet1d_C\window\CMakeLists.txt;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindQt4.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckCXXSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\MacroAddFileDependencies.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakePushCheckState.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Qt4ConfigDependentSettings.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Qt4Macros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\UseQt4.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeConfigurableFile.in;C:\D\wavelet1d_C\window\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\D\wavelet1d_C\build\window\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/D/wavelet1d_C/window/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/D/wavelet1d_C -BC:/D/wavelet1d_C/build --check-stamp-file C:\D\wavelet1d_C\build\window\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/D/wavelet1d_C/window/CMakeLists.txt;C:\D\wavelet1d_C\window\CMakeLists.txt;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindQt4.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckCXXSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\MacroAddFileDependencies.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakePushCheckState.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Qt4ConfigDependentSettings.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Qt4Macros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\UseQt4.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeConfigurableFile.in;C:\D\wavelet1d_C\window\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\D\wavelet1d_C\build\window\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\D\wavelet1d_C\window\MainWindow.ui">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating ui_MainWindow.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Qt\4.8.6\bin\uic.exe -o C:/D/wavelet1d_C/build/window/ui_MainWindow.h C:/D/wavelet1d_C/window/MainWindow.ui
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/D/wavelet1d_C/window/MainWindow.ui;C:\D\wavelet1d_C\window\MainWindow.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\D\wavelet1d_C\build\window\ui_MainWindow.h</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating ui_MainWindow.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Qt\4.8.6\bin\uic.exe -o C:/D/wavelet1d_C/build/window/ui_MainWindow.h C:/D/wavelet1d_C/window/MainWindow.ui
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/D/wavelet1d_C/window/MainWindow.ui;C:\D\wavelet1d_C\window\MainWindow.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\D\wavelet1d_C\build\window\ui_MainWindow.h</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating ui_MainWindow.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Qt\4.8.6\bin\uic.exe -o C:/D/wavelet1d_C/build/window/ui_MainWindow.h C:/D/wavelet1d_C/window/MainWindow.ui
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/D/wavelet1d_C/window/MainWindow.ui;C:\D\wavelet1d_C\window\MainWindow.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\D\wavelet1d_C\build\window\ui_MainWindow.h</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating ui_MainWindow.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Qt\4.8.6\bin\uic.exe -o C:/D/wavelet1d_C/build/window/ui_MainWindow.h C:/D/wavelet1d_C/window/MainWindow.ui
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/D/wavelet1d_C/window/MainWindow.ui;C:\D\wavelet1d_C\window\MainWindow.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\D\wavelet1d_C\build\window\ui_MainWindow.h</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\D\wavelet1d_C\build\CMakeFiles\1a3221478bf0e03036d325c9753b0019\moc_MainWindow.cxx.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating moc_MainWindow.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\D\wavelet1d_C\build\window
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.6\bin\moc.exe @C:/D/wavelet1d_C/build/window/moc_MainWindow.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/D/wavelet1d_C/build/CMakeFiles/1a3221478bf0e03036d325c9753b0019/moc_MainWindow.cxx.rule;C:\D\wavelet1d_C\window\MainWindow.h;C:\D\wavelet1d_C\build\window\moc_MainWindow.cxx_parameters;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\D\wavelet1d_C\build\window\moc_MainWindow.cxx</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating moc_MainWindow.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\D\wavelet1d_C\build\window
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.6\bin\moc.exe @C:/D/wavelet1d_C/build/window/moc_MainWindow.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/D/wavelet1d_C/build/CMakeFiles/1a3221478bf0e03036d325c9753b0019/moc_MainWindow.cxx.rule;C:\D\wavelet1d_C\window\MainWindow.h;C:\D\wavelet1d_C\build\window\moc_MainWindow.cxx_parameters;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\D\wavelet1d_C\build\window\moc_MainWindow.cxx</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating moc_MainWindow.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\D\wavelet1d_C\build\window
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.6\bin\moc.exe @C:/D/wavelet1d_C/build/window/moc_MainWindow.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/D/wavelet1d_C/build/CMakeFiles/1a3221478bf0e03036d325c9753b0019/moc_MainWindow.cxx.rule;C:\D\wavelet1d_C\window\MainWindow.h;C:\D\wavelet1d_C\build\window\moc_MainWindow.cxx_parameters;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\D\wavelet1d_C\build\window\moc_MainWindow.cxx</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating moc_MainWindow.cxx</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\D\wavelet1d_C\build\window
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\4.8.6\bin\moc.exe @C:/D/wavelet1d_C/build/window/moc_MainWindow.cxx_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/D/wavelet1d_C/build/CMakeFiles/1a3221478bf0e03036d325c9753b0019/moc_MainWindow.cxx.rule;C:\D\wavelet1d_C\window\MainWindow.h;C:\D\wavelet1d_C\build\window\moc_MainWindow.cxx_parameters;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\D\wavelet1d_C\build\window\moc_MainWindow.cxx</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\D\wavelet1d_C\build\window\ui_MainWindow.h" />
+    <ClInclude Include="C:\D\wavelet1d_C\window\MainWindow.h" />
+    <ClCompile Include="C:\D\wavelet1d_C\window\MainWindow.cpp"  />
+    <ClCompile Include="C:\D\wavelet1d_C\build\window\moc_MainWindow.cxx"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/D/wavelet1d_C/build/ZERO_CHECK.vcxproj">
+      <Project>D7703E39-3AFB-4ED8-9DCB-0EAD0F6AAD40</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

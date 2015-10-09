@@ -7,9 +7,9 @@
 %  Method is Mallat's Pyramid Algorithm
 
 %load data from file
-%[filename,filepath] = uigetfile('*.*');
+[filename,filepath] = uigetfile('*.*');
 fullname=fullfile(filepath,filename);
-fullname='C:/D/wavelet1d_C/build/algorithm/test.txt'
+%fullname='C:/D/wavelet1d_C/build/algorithm/test.txt'
 
 %decompose level
 level=5;
