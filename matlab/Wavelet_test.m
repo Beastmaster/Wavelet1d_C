@@ -90,13 +90,51 @@ Des2=wrcoef('a',C2,L2,wave_type,level);
 % FIR parameters
 % IIR parameters
 
+ACoef[] = [
+        0.97996108158527773000,
+        -4.89980540792638840000,
+        9.79961081585277680000,
+        -9.79961081585277680000,
+        4.89980540792638840000,
+        -0.97996108158527773000]
+
+BCoef[] =[
+        1.00000000000000000000,
+        -4.95933444853386440000,
+        9.83816341127570130000,
+        -9.75847320197398460000,
+        4.83979404410087890000,
+        -0.96014980456165600000]
+
+		
+x=(0,0.1,1)
+y=(0,0.1,1)
+
+Des_y = []
+
+%loop begin
+for i = 1:len(Des2)
+	%shift data
+	for j = 1:len(x)-1
+		x[j+1] = x[j]	
+		y[j+1] = y[j]	
+	end
+	x[1] = Des2[i]
+	y[1] = x[1]*ACoef[1]
+	%filter
+	for n=1:len(ACoef)
+        y[1] += ACoef[n] * x[n] - BCoef[n] * y[n];
+	end
+	
+	Des_y = [Des_y;y[1]]
+end
 
 
 
 %%%   plot here  %%%
 
 figure(1)
-row=3;
+row=4;
 col=1;
 % plot original signal
 subplot(row,col,1)
@@ -110,7 +148,10 @@ title('Filtered signal')
 subplot(row,col,3)
 plot(Des2(1:length(Des)))
 title('One time filter')
-
+% plot high pass signal
+subplot(row,col,4)
+plot(Des_y(1:length(Des_y)))
+title('One time filter')
 
 
 
