@@ -83,6 +83,16 @@ Des2=wrcoef('a',C2,L2,wave_type,level);
 %Des3=swt(re_data,Lo_D,Hi_D);
 
 
+
+%%%%%   high pass filter   %%%%
+% sample rate: 500Hz
+% cut-off rate
+% FIR parameters
+% IIR parameters
+
+
+
+
 %%%   plot here  %%%
 
 figure(1)
