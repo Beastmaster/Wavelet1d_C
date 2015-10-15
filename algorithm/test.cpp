@@ -16,13 +16,13 @@ int main(int argc,char** argv)
 	double* signal_buf1 = (double*) malloc(signal_len*sizeof(double));   //signal buff, hold wavelet filtered signal
 	double* signal_buf2 = (double*) malloc(signal_len*sizeof(double));   //signal buff, hold differentiated result
 	double* signal_buf3 = (double*) malloc(signal_len*sizeof(double));   //signal buff, hold squaring result
-	double* signal_buf4 = (double*) malloc(signal_len*sizeof(double));   //signal buff, hold integrated function result
+	double* signal_buf4 = (double*) malloc(signal_len*10*sizeof(double));   //signal buff, hold integrated function result
 	
 	memset(signal_des ,0,signal_len*sizeof(double));
 	memset(signal_buf1,0,signal_len*sizeof(double));
 	memset(signal_buf2,0,signal_len*sizeof(double));
 	memset(signal_buf3,0,signal_len*sizeof(double));
-	memset(signal_buf4,0,signal_len*sizeof(double));
+	memset(signal_buf4,0,signal_len*10*sizeof(double));
 	
 	
 	WaveCoeff coeff[10];
@@ -30,8 +30,8 @@ int main(int argc,char** argv)
 	int de_level=5;
 	int filter_name=0;
 	double des=0.0;     //selected wavelet filter result
-	int peak_flg1=0;    //flag2
-	int peak_flg2=0;    //flag2
+	int peak_flag1=0;    //flag2
+	int peak_flag2=0;    //flag2
 	double peak = 0.0;  //QRS peak
 
 	char* filename=argv[1];
@@ -58,7 +58,7 @@ int main(int argc,char** argv)
 		//time counter
 		gettimeofday(&start,NULL);
 		timer=start.tv_usec;
-		printf("%d\n",timer);	
+	//	printf("%d\n",timer);	
 	
 		//move out components ahead
 		for(int i=0;i<signal_len-_step;i++)
@@ -143,25 +143,40 @@ int main(int argc,char** argv)
 		signal_buf2[0] = signal_buf1[0]-signal_buf2[3];
 		
 		//2.  Squaring funciton 
-		//3.  Integrate function
 		for(int i=signal_len-1;i>0;i--)
-		{
 			signal_buf3[i] = signal_buf3[i-1];
-			signal_buf4[i] = signal_buf4[i-1];
-			signal_buf4[0] += signal_buf3[i-1];
-		}
 		//signal_buf3[0] = signal_buf2[0]*signal_buf2[0];
 		signal_buf3[0] = abs(signal_buf2[0]);
-		signal_buf4[0] = signal_buf4[0]+signal_buf3[0];
 		
-		//4.  Search peak
-		if (signal_buf4[0]>=peak)&&(signal_buf4[4]<peak)
-			printf("detect a peak \n");
+		//3.  Integrate function
+		for (int i=signal_len*10-1;i>0;i--)
+			signal_buf4[i] = signal_buf4[i-1];
+		signal_buf4[0] = 0.0;
+		for (int i=0;i<signal_len;i++)
+			signal_buf4[0] = signal_buf4[0]+signal_buf3[i];
 		
-			
+		if (peak<signal_buf4[0])
+			peak = signal_buf4[0];
+		
+		peak = 46000.0;
+		
+		//search peak
+		if (signal_buf4[0]>=peak*4/5)
+			peak_flag1 = 1;
+		else
+			peak_flag1 = 0;
+		if (signal_buf4[3]>=peak*4/5)
+			peak_flag2 = 1;
+		else
+			peak_flag2 = 0;
+		if((peak_flag2==0)&(peak_flag1==1))
+		{
+			printf("ok\n");
+			fprintf(fp_w,"%f\n",0);		
+		}
 		//select data in the middle of the signal
 		for (int i=_shift;i<_shift+_step;i++)
-			fprintf(fp_w,"%f\n",des);// recon[0].capp[i]);
+			fprintf(fp_w,"%f\n",signal_buf4[0]);//des);// recon[0].capp[i]);
 	}
 
 	fclose(fp_r);
