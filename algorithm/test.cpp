@@ -3,10 +3,13 @@
 //#include <Wavelet.hpp>
 #include <string.h>
 
+//time counter
+#include <sys/time.h>
+
 int main(int argc,char** argv)
 {
-	int signal_len=256;
-	int _step  = 1;//(int) signal_len/10;  //read length
+	int signal_len=512;
+	int _step  = 1;// (int) signal_len/10;  //read length
 	int _shift = (int) signal_len/3;  //select points from reconstructed data
 
 	double* signal_des  = (double*) malloc(signal_len*sizeof(double)) ;
@@ -17,24 +20,34 @@ int main(int argc,char** argv)
 	int de_level=5;
 	int filter_name=0;
 
-	const char filename[]="test.txt";
+	char* filename=argv[1];
 	const char filename2[]="test2.txt";
 
-
-	printf("opening file");
+	printf("opening file %s",filename);
 
 	FILE *fp_r=fopen("test.txt","r");   //read data
 	FILE *fp_w=fopen(filename2,"w");   //write result
-
+	
+	struct timeval start;
+	unsigned long timer;	
 
 	//begin loop
 	if (fp_r==NULL)
+	{
+		printf("NULL file pionter");
 		return 0;
-
+	}
 	char buf[15]={0};
 
 	while (fgets(buf,15,fp_r)!=NULL)
 	{
+		
+	//time counter
+	
+	gettimeofday(&start,NULL);
+	timer=start.tv_usec;
+	printf("%d\n",timer);	
+	
 		//move out components ahead
 		for(int i=0;i<signal_len-_step;i++)
 			signal_des[i]=signal_des[i+_step];
