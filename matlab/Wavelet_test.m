@@ -139,7 +139,7 @@ for i=5:1:length(Des)
 end
 %%%% Squaring funciton %%%%
 for i=1:1:length(Des_y)
-   Des_y2 = [Des_y2;(Des_y(i)*Des_y(i))] ;
+   Des_y2 = [Des_y2;abs(Des_y(i))];%*Des_y(i))] ;
 end 
 %%%%  Integrate function %%%%
 for i=61:1:length(Des_y2)
