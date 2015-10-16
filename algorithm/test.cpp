@@ -32,6 +32,7 @@ int main(int argc,char** argv)
 	double des=0.0;     //selected wavelet filter result
 	int peak_flag1=0;    //flag2
 	int peak_flag2=0;    //flag2
+	int peak_delay= 0;  //peak refresh rate
 	double peak = 0.0;  //QRS peak
 
 	char* filename=argv[1];
@@ -133,14 +134,14 @@ int main(int argc,char** argv)
 		
 		des = recon[0].capp[_shift];
 		
-		for(int i=1;i<signal_len;i++)
+		for(int i=signal_len-1;i>0;i--)
 			signal_buf1[i] = signal_buf1[i-1];
 		signal_buf1[0] = des;
 		
 		//1.  differentiate function -- derivative
 		for(int i=signal_len-1;i>0;i--)
 			signal_buf2[i] = signal_buf2[i-1];
-		signal_buf2[0] = signal_buf1[0]-signal_buf2[3];
+		signal_buf2[0] = signal_buf1[0]-signal_buf1[3];
 		
 		//2.  Squaring funciton 
 		for(int i=signal_len-1;i>0;i--)
@@ -149,18 +150,23 @@ int main(int argc,char** argv)
 		signal_buf3[0] = abs(signal_buf2[0]);
 		
 		//3.  Integrate function
-		for (int i=signal_len*10-1;i>0;i--)
+		peak = 0.0;
+		for (int i=signal_len*10-1;i>0;i--)	
+		{
+			if(peak<signal_buf4[i])
+				peak = signal_buf4[i];
 			signal_buf4[i] = signal_buf4[i-1];
+		}
 		signal_buf4[0] = 0.0;
 		for (int i=0;i<signal_len;i++)
 			signal_buf4[0] = signal_buf4[0]+signal_buf3[i];
 		
-		if (peak<signal_buf4[0])
-			peak = signal_buf4[0];
-		
-		peak = 46000.0;
-		
 		//search peak
+		if(peak_delay>100)
+			peak_delay = 0;
+		else
+			peak_delay++;
+		
 		if (signal_buf4[0]>=peak*4/5)
 			peak_flag1 = 1;
 		else
@@ -169,14 +175,20 @@ int main(int argc,char** argv)
 			peak_flag2 = 1;
 		else
 			peak_flag2 = 0;
+		//detect a peak here
 		if((peak_flag2==0)&(peak_flag1==1))
 		{
-			printf("ok\n");
-			fprintf(fp_w,"%f\n",0);		
+			//find last peak distance: if the distance larger than 10 point, then output a peak 
+			if (peak_delay>10)
+			{
+				peak_delay = 0;
+				printf("ok\n");
+				fprintf(fp_w,"%f\n",0);		
+			}
 		}
 		//select data in the middle of the signal
 		for (int i=_shift;i<_shift+_step;i++)
-			fprintf(fp_w,"%f\n",signal_buf4[0]);//des);// recon[0].capp[i]);
+			fprintf(fp_w,"%f\n",des);// recon[0].capp[i]);
 	}
 
 	fclose(fp_r);
