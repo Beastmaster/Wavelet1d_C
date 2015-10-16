@@ -1,0 +1,16 @@
+Author: QIN Shuo
+Organization:  RC-MIC(CUHK)
+Date:   2015.1.16
+
+In this folder, a real time QRS detection function is relized
+The main de-noising algorithm is wavelet
+
+QRS Detection pipeline is:
+
+1. Get a new point
+2. Applay wavelet transform and i-wavelet transform
+3. Differentiate the wave and get derivative
+4. Calculate squaring function of derivative array
+5. Integrate the array (search and refresh the peak at the same time)
+6. Detect a peak and check distance between the last peak
+
