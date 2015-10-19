@@ -1311,6 +1311,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	Para_Init();
 
+	//serial port control
 	connect(this->ui->port_name_Comb,SIGNAL(currentIndexChanged(const QString)),this,SLOT(sel_portName(QString)));
 	connect(this->ui->baud_rate_Comb,SIGNAL(currentIndexChanged(int)),			this,SLOT(set_BaudRate(int)));
 	connect(this->ui->stop_bits_Comb,SIGNAL(currentIndexChanged(int)),			this,SLOT(set_stopBits(int)));
@@ -1318,14 +1319,16 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(this->ui->parity_Comb,   SIGNAL(currentIndexChanged(int)),			this,SLOT(set_Parity(int)));
 	connect(this->ui->open_port_Btn, SIGNAL(clicked()),							this,SLOT(open_Port()));
 	connect(this->ui->close_port_Btn,SIGNAL(clicked()),							this,SLOT(close_Port()));
-	connect(this->ui->send_Btn,SIGNAL(clicked()),							this,SLOT(send_Data()));
+	connect(this->ui->send_Btn,		 SIGNAL(clicked()),							this,SLOT(send_Data()));
+	
+	//filters
 	connect(this->ui->refresh_Time,  SIGNAL(valueChanged(int)),				this,SLOT(get_refresh_Timeout(int)));
 	connect(this->ui->filter_Combo,  SIGNAL(currentIndexChanged(int)),		this,SLOT(set_Filter(int)));
 	connect(this->ui->leve_In,		 SIGNAL(valueChanged(int)),				this,SLOT(set_Level(int)));
 
 	//connect timer function
 	connect(this->check_port_Timer,SIGNAL(timeout()),this,SLOT(check_port_Status()));
-	connect(this->test_timer,      SIGNAL(timeout()),this,SLOT(test_timer_func()));
+	//connect(this->test_timer,      SIGNAL(timeout()),this,SLOT(test_timer_func()));
 	//com port receive data signal has already connected in open_port()
 	//connect signal to enable atuo-scroll in info panel
 	connect(this->ui->info_Panel,SIGNAL(cursorPositionChanged()),this,SLOT(info_Panel_Scroll()));

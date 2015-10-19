@@ -12,6 +12,16 @@
 //time counter
 #include <sys/time.h>
 
+
+//serial port header
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <termios.h>
+
+
+
 int main(int argc,char** argv)
 {
 	int signal_len=40;
@@ -41,13 +51,58 @@ int main(int argc,char** argv)
 	int peak_delay= 0;  //peak refresh rate
 	double peak = 0.0;  //QRS peak
 
+	/******* configure serial port ******/
+    struct termios tio;
+    struct termios stdio;
+    struct termios old_stdio;
+    int tty_fd;	
+	
+    unsigned char c='D';
+	unsigned char* portname = "ttyS1";
+    tcgetattr(STDOUT_FILENO,&old_stdio);
+    
+    printf("Please start with %s /dev/ttyS1 (for example)\n",argv[0]);
+    memset(&stdio,0,sizeof(stdio));
+    stdio.c_iflag=0;
+    stdio.c_oflag=0;
+    stdio.c_cflag=0;
+    stdio.c_lflag=0;
+    stdio.c_cc[VMIN]=1;
+    stdio.c_cc[VTIME]=0;
+    tcsetattr(STDOUT_FILENO,TCSANOW,&stdio);
+    tcsetattr(STDOUT_FILENO,TCSAFLUSH,&stdio);
+    fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);       // make the reads non-blocking
+    
+    memset(&tio,0,sizeof(tio));
+    tio.c_iflag=0;
+    tio.c_oflag=0;
+    tio.c_cflag=CS8|CREAD|CLOCAL;           // 8n1, see termios.h for more information
+    tio.c_lflag=0;
+    tio.c_cc[VMIN]=1;
+    tio.c_cc[VTIME]=5;
+    
+    tty_fd=open(portname, O_RDWR | O_NONBLOCK);      
+    cfsetospeed(&tio,B115200);            // 115200 baud
+    cfsetispeed(&tio,B115200);            // 115200 baud
+    
+    tcsetattr(tty_fd,TCSANOW,&tio);	
+	while (c!='q')
+    {
+            if (read(tty_fd,&c,1)>0)        write(STDOUT_FILENO,&c,1);              // if new data is available on the serial port, print it out
+            if (read(STDIN_FILENO,&c,1)>0)  write(tty_fd,&c,1);                     // if new data is available on the console, send it to the serial port
+    }
+	
+	
+	//enable test (read file)
+	FILE *fp_r;
+	FILE *fp_w;
 	char* filename=argv[1];
 	const char filename2[]="test2.txt";
 
 	printf("opening file %s",filename);
 
-	FILE *fp_r=fopen("test.txt","r");   //read data
-	FILE *fp_w=fopen(filename2,"w");   //write result
+	FILE *fp_r=fopen(filename,"r");     //read data
+	FILE *fp_w=fopen(filename2,"w");    //write result
 	
 	struct timeval start;
 	unsigned long timer;	
@@ -197,13 +252,16 @@ int main(int argc,char** argv)
 			fprintf(fp_w,"%f\n",des);// recon[0].capp[i]);
 	}
 
+	//close file
 	fclose(fp_r);
 	fclose(fp_w);
 
+	//close port
+	close(tty_fd);
+    tcsetattr(STDOUT_FILENO,TCSANOW,&old_stdio);
+	
 	return 0;
 }
-
-
 
 
 
