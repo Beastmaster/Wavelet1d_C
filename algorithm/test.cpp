@@ -1,3 +1,9 @@
+/*
+ *Last update: 2015.10.19
+ *
+ * */
+
+
 //#include <firwin.h>
 #include "wavelet.h"
 //#include <Wavelet.hpp>
