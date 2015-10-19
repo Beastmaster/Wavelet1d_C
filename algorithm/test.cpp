@@ -58,7 +58,7 @@ int main(int argc,char** argv)
     int tty_fd;	
 	
     unsigned char c='D';
-	unsigned char* portname = "ttyS1";
+	const char* portname = "ttyS1";
     tcgetattr(STDOUT_FILENO,&old_stdio);
     
     printf("Please start with %s /dev/ttyS1 (for example)\n",argv[0]);
@@ -80,6 +80,14 @@ int main(int argc,char** argv)
     tio.c_lflag=0;
     tio.c_cc[VMIN]=1;
     tio.c_cc[VTIME]=5;
+	
+	//for serial port 
+	unsigned char buf[10];
+	int     da = 0;
+	int	buf_cnt=0;
+  	struct timeval start;
+	unsigned long timer;
+    unsigned char c='D';
     
     tty_fd=open(portname, O_RDWR | O_NONBLOCK);      
     cfsetospeed(&tio,B115200);            // 115200 baud
@@ -96,9 +104,9 @@ int main(int argc,char** argv)
 			if (c == 'a')
 			{	gettimeofday(&start,NULL);
 				timer = start.tv_usec;
-				printf("t:%d\n",timer);
+				//printf("t:%d\n",timer);
 				da = atof(buf);
-				printf("%d",da);
+				//printf("%d",da);
 				buf_cnt = 0;
 				memset(buf,10,sizeof(unsigned char));
 	/*   }
