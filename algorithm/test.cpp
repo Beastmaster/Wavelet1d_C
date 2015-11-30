@@ -87,7 +87,6 @@ int main(int argc,char** argv)
 	int	buf_cnt=0;
   	struct timeval start;
 	unsigned long timer;
-    unsigned char c='D';
     
     tty_fd=open(portname, O_RDWR | O_NONBLOCK);      
     cfsetospeed(&tio,B115200);            // 115200 baud

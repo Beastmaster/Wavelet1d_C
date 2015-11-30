@@ -1378,7 +1378,7 @@ void MainWindow::Para_Init()
 	this->ui->refresh_Time->setValue(10);
 
 	comName = "com1";
-	myComSetting.BaudRate = BAUD9600;
+	myComSetting.BaudRate = BAUD115200;
 	myComSetting.DataBits = DATA_8;
 	myComSetting.Parity   = PAR_NONE;
 	myComSetting.FlowControl = FLOW_OFF;
@@ -1393,11 +1393,11 @@ void MainWindow::Para_Init()
 	this->ui->num_points_Slider->setTickInterval(100);
 
 	//setup y scope bar
-	this->ui->y_pos_Scope->setMinimum(-100);
-	this->ui->y_pos_Scope->setMaximum(2000);
+	this->ui->y_pos_Scope->setMinimum(-4000);
+	this->ui->y_pos_Scope->setMaximum(50000);
 	this->ui->y_pos_Scope->setSliderPosition(2);
-	this->ui->y_neg_Scope->setMinimum(-2000);
-	this->ui->y_neg_Scope->setMaximum(100);
+	this->ui->y_neg_Scope->setMinimum(-40000);
+	this->ui->y_neg_Scope->setMaximum(50000);
 	this->ui->y_neg_Scope->setSliderPosition(-2);
 
 	//filter ui
@@ -1554,7 +1554,7 @@ void MainWindow::send_Data()
 	myCom->write(temp.toAscii());
 
 	//clear data in send panel
-	this->ui->send_Panel->clear();
+	//this->ui->send_Panel->clear();
 }
 
 
