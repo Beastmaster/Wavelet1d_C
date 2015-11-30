@@ -24,6 +24,8 @@
 
 int main(int argc,char** argv)
 {
+	int ppp_cnt = 0;
+	long total_cnt = 0;
 	int signal_len=40;
 	int _step  = 1;// (int) signal_len/10;  //read length
 	int _shift = (int) signal_len/2;  //select points from reconstructed data
@@ -50,18 +52,28 @@ int main(int argc,char** argv)
 	int peak_flag2=0;    //flag2
 	int peak_delay= 0;  //peak refresh rate
 	double peak = 0.0;  //QRS peak
+	double peak_l = 0.0;//QRS peak temp
 
-	/******* configure serial port ******/
+    /******* configure serial port for receiving******/
     struct termios tio;
     struct termios stdio;
     struct termios old_stdio;
     int tty_fd;	
-	
+    /* *uart4 for sending**/    
+    struct termios tio2;
+    struct termios stdio2;
+    struct termios old_stdio2;
+    int tty_fd2;	
+
+
     unsigned char c='D';
-	const char* portname = "ttyS1";
+    unsigned char char_a = 'a';
+    const char* portname = "/dev/ttyS2";
+    const char* portname2 = "/dev/ttyS1";
     tcgetattr(STDOUT_FILENO,&old_stdio);
     
-    printf("Please start with %s /dev/ttyS1 (for example)\n",argv[0]);
+
+  //  printf("Please start with %s /dev/ttyS1 (for example)\n",argv[0]);
     memset(&stdio,0,sizeof(stdio));
     stdio.c_iflag=0;
     stdio.c_oflag=0;
@@ -80,34 +92,117 @@ int main(int argc,char** argv)
     tio.c_lflag=0;
     tio.c_cc[VMIN]=1;
     tio.c_cc[VTIME]=5;
+
 	
+    memset(&tio2,0,sizeof(tio2));
+    tio2.c_iflag=0;
+    tio2.c_oflag=0;
+    tio2.c_cflag=CS8|CREAD|CLOCAL;           // 8n1, see termios.h for more information
+    tio2.c_lflag=0;
+    tio2.c_cc[VMIN]=1;
+    tio2.c_cc[VTIME]=5;
+
 	//for serial port 
-	unsigned char buf[10];
+	char buf[10];    //store received bytes
+	char buf2[10];   //store bytes tobe sent
 	int     da = 0;
 	int	buf_cnt=0;
   	struct timeval start;
 	unsigned long timer;
-    
-    tty_fd=open(portname, O_RDWR | O_NONBLOCK);      
+
+
+	memset(buf,10,sizeof(char));
+	memset(buf2,10,sizeof(char));
+
+    tty_fd=open (portname,  O_RDWR | O_NONBLOCK);      
+    if(tty_fd == -1)   printf("open port error!!!\n");
     cfsetospeed(&tio,B115200);            // 115200 baud
     cfsetispeed(&tio,B115200);            // 115200 baud
     
+    tty_fd2=open (portname2,  O_RDWR | O_NONBLOCK);      
+    if(tty_fd2 == -1)   printf("open port error!!!\n");
+    cfsetospeed(&tio2,B115200);            // 115200 baud
+    cfsetispeed(&tio2,B115200);            // 115200 baud
+
     tcsetattr(tty_fd,TCSANOW,&tio);	
-	while (c!='q')
+    while (c!='q')
     {
         //if (read(tty_fd,&c,1)>0)        write(STDOUT_FILENO,&c,1);              // if new data is available on the serial port, print it out
         if (read(tty_fd,&c,1)>0)        
 		{
+			if( c == 'b')  
+				filter_name = 1;
+			if( c == 'c')
+				filter_name = 2;
+			if( c == 'd')
+				filter_name = 3;
+			if( c == 'e')
+				filter_name = 4;
+
+    tcsetattr(tty_fd,TCSANOW,&tio);	
+    while (c!='q')
+    {
+        //if (read(tty_fd,&c,1)>0)        write(STDOUT_FILENO,&c,1);              // if new data is available on the serial port, print it out
+        if (read(tty_fd,&c,1)>0)        
+		{
+			if( c == 'b')  
+				filter_name = 1;
+			if( c == 'c')
+				filter_name = 2;
+			if( c == 'd')
+				filter_name = 3;
+			if( c == 'e')
+				filter_name = 4;
+
+    tcsetattr(tty_fd,TCSANOW,&tio);	
+    while (c!='q')
+    {
+        //if (read(tty_fd,&c,1)>0)        write(STDOUT_FILENO,&c,1);              // if new data is available on the serial port, print it out
+        if (read(tty_fd,&c,1)>0)        
+		{
+			if( c == 'b')  
+				filter_name = 1;
+			if( c == 'c')
+				filter_name = 2;
+			if( c == 'd')
+				filter_name = 3;
+			if( c == 'e')
+				filter_name = 4;
+    tcsetattr(tty_fd2,TCSANOW,&tio2);	
+    while (c!='q')
+    {
+        //if (read(tty_fd,&c,1)>0)        write(STDOUT_FILENO,&c,1);              // if new data is available on the serial port, print it out
+        if (read(tty_fd,&c,1)>0)        
+		{
+			if( c == 'b')  
+				filter_name = 1;
+			if( c == 'c')
+				filter_name = 2;
+			if( c == 'd')
+				filter_name = 3;
+			if( c == 'e')
+				filter_name = 4;
+			if( c == 'f')
+				filter_name = 5;
+			if( c == 'g')
+				filter_name = 6;
+			if( c == 'h')
+				filter_name = 7;
+			if( c == 'i')
+				filter_name = 8;
+			
+			
 			//write(STDOUT_FILENO,&c,1);              // if new data is available on the serial port, print it out
-			//printf("\n");
-			if (c == 'a')
-			{	gettimeofday(&start,NULL);
+			if(c == 'a')
+			{	total_cnt++;
+				gettimeofday(&start,NULL);
 				timer = start.tv_usec;
-				//printf("t:%d\n",timer);
+				//printf("t:%d\t",timer);
+				//printf("cnt is %d\t",total_cnt);
 				da = atof(buf);
-				//printf("%d",da);
+				//printf("da is%d\t",da);
 				buf_cnt = 0;
-				memset(buf,10,sizeof(unsigned char));
+				memset(buf,10,sizeof(char));
 	/*   }
 	
 
@@ -215,10 +310,11 @@ int main(int argc,char** argv)
 							WaveReconstruct(signal_des,signal_len,coif5_Lo_R,coif5_len,coif5_Hi_R,coif5_len,coeff,recon,'a',de_level);
 							break;
 						}
-					default: //db4
+					default:  //disable filter
 						{
-							WaveDecompose(signal_des,signal_len,db4_Lo_D,db4_len,db4_Hi_D,db4_len,coeff,de_level);
-							WaveReconstruct(signal_des,signal_len,db4_Lo_R,db4_len,db4_Hi_R,db4_len,coeff,recon,'a',de_level);
+							//WaveDecompose(signal_des,signal_len,db4_Lo_D,db4_len,db4_Hi_D,db4_len,coeff,de_level);
+							//WaveReconstruct(signal_des,signal_len,db4_Lo_R,db4_len,db4_Hi_R,db4_len,coeff,recon,'a',de_level);
+							des = da;
 							break;
 						}
 					}
@@ -254,7 +350,7 @@ int main(int argc,char** argv)
 					
 					//search peak
 					if(peak_delay>100)
-						peak_delay = 0;
+						peak_delay = 100;
 					else
 						peak_delay++;
 					
@@ -262,36 +358,31 @@ int main(int argc,char** argv)
 						peak_flag1 = 1;
 					else
 						peak_flag1 = 0;
-					if (signal_buf4[3]>=peak*4/5)
+					if (signal_buf4[1]>=peak*4/5)
 						peak_flag2 = 1;
 					else
 						peak_flag2 = 0;
 					//detect a peak here
-					if((peak_flag2==0)&(peak_flag1==1))
+					if((peak_flag2==1)&(peak_flag1==0))
 					{
 						//find last peak distance: if the distance larger than 10 point, then output a peak 
-						if (peak_delay>10)
+						if (peak_delay>30)
 						{
+							//ppp_cnt++;
 							peak_delay = 0;
-							printf("ok\n");
-							//printf("%f\n",);		
+							memset(buf2,10,sizeof(char));
+							gcvt(10000,10,buf2);
+							//write(tty_fd,buf2,10);
+							//write(tty_fd,buf2,10);
+							//write a spliter character 'a'
+							//write(tty_fd,&char_a,1);
+							//printf("0\n");
 						}
 					}
 					//select data in the middle of the signal
 					for (int i=_shift;i<_shift+_step;i++)
-						printf("%f\n",des);// recon[0].capp[i]);
-					
-			}		
-			else
-			{	if(buf_cnt>=10)
-					buf_cnt = 0;
-				buf[buf_cnt] = c;
-				buf_cnt++;	
-			}
-
-        }	
-		if (read(STDIN_FILENO,&c,1)>0)  write(tty_fd,&c,1);                     // if new data is available on the console, send it to the serial port
-
+					{
+		}
 		
 	}
 
@@ -300,10 +391,10 @@ int main(int argc,char** argv)
 	fclose(fp_w);
 */
 	//close port
-	close(tty_fd);
+    close(tty_fd);
     tcsetattr(STDOUT_FILENO,TCSANOW,&old_stdio);
 	
-	return 0;
+    return 0;
 }
 
 
