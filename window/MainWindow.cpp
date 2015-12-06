@@ -1395,10 +1395,12 @@ void MainWindow::Para_Init()
 	//setup y scope bar
 	this->ui->y_pos_Scope->setMinimum(-4000);
 	this->ui->y_pos_Scope->setMaximum(50000);
-	this->ui->y_pos_Scope->setSliderPosition(2);
+	this->ui->y_pos_Scope->setSliderPosition(2000);
 	this->ui->y_neg_Scope->setMinimum(-40000);
 	this->ui->y_neg_Scope->setMaximum(50000);
-	this->ui->y_neg_Scope->setSliderPosition(-2);
+	this->ui->y_neg_Scope->setSliderPosition(-2000);
+	this->change_Y_pos_Scope(2000);
+	this->change_Y_neg_Scope(-2000);
 
 	//filter ui
 	this->ui->leve_In->setValue(5);
@@ -1526,7 +1528,7 @@ void MainWindow::pass_Dot(double in_data)
 			means = means+signal_init[j]; 
 		}
 		//std::cout<<recon[0].capp[signal_len-10]<<std::endl;
-		this->plot_view->pass_Dot(recon[0].capp[signal_len-10]-means/signal_len);
+		this->plot_view->pass_Dot(recon[0].capp[signal_len - 10]);// -means / signal_len);
 	}
 	else
 	{
@@ -1789,7 +1791,7 @@ void MainWindow::change_Y_neg_Scope(int neg)
 
 void MainWindow::test_timer_func()
 {
-	if (test_timer_cnt>3300)
+	if (test_timer_cnt>1200)
 	{
 		test_timer_cnt = 0;
 	}
